@@ -16,5 +16,10 @@ function transformToArrayName (arr) {
 let names = transformToArrayName(users);
 console.log(names);
 
+//solution with method map
+
+let newArr = users.map(item => item.name)
+console.log(newArr)
+
 
 
