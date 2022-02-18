@@ -26,26 +26,25 @@ const contacts = [
 ];
 
 function lookUpProfile(name, prop) {
-  for (let i = 0; i <= contacts.length; i++) {
-    console.log(contacts[i].firstName);
-    if (name == contacts[i].firstName && contacts[i].hasOwnProperty(prop)) {
-      // checking does ("Harry", "likes")) fall under this condition? No
-      console.log(1); // fails the "if" test if the following "if else" condition is present
-      contacts[i][prop];
-    } else if (name !== contacts[i].firstName) {
-      // checking does ("Harry", "likes")) fall under this condition? YES
-      console.log(2); // if we delete this contition - the first "if" works and our parameters pass first "if"
-      ("No such contact"); // return respectively value.
-    } else if (!contacts[i].hasOwnProperty(prop)) {
-      ("No such property");
+  for (let i = 0; i < contacts.length; i++) {
+    if (name == contacts[i].firstName) {
+      // if this condition is not truthly - all following code in the loop will not execute
+      if (contacts[i].hasOwnProperty(prop)) {
+        // will execute if firs conditions is truthly
+        return contacts[i][prop]; // will execute if nested conditions is truthly
+      } else {
+        return "No such property"; // will execute only if nested conditions is false
+      }
     }
   }
+  return "No such contact"; // will run if first conditions is false (because we put it outside the loop)
 }
-// loop is writen right (if I delete all "if" contitions - I het every iteration element)
 
 // console.log(lookUpProfile("Akira", "likes"));
 // console.log(lookUpProfile("Bob", "likes"));
 // console.log(lookUpProfile("Akira", "drinks"));
 // console.log(lookUpProfile("Kristian", "lastName"));
 // console.log(lookUpProfile("Sherlock", "likes"));
-console.log(lookUpProfile("Harry", "likes")); // we passed the test only on the first element (element with index 0)
+console.log(lookUpProfile("Harry", "likes"));
+
+// prop in contacts[i] - another way to check existens of property
